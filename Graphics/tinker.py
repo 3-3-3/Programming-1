@@ -1,6 +1,10 @@
 import tkinter as tk
 import math
 import random 
+import os
+import playsound as ps
+import threading
+
 
 
 class Ball:
@@ -56,6 +60,13 @@ ball = Ball(root)
 rect = Bar(master=root)
 move_angle = 45
 speed = 8
+sounds_dir = '/Users/TheBestKid/Desktop/Programming/Graphics/Sounds'
+
+def play_sound():
+	rand_index = random.randint(0, len(os.listdir(sounds_dir))-1)
+	print(os.listdir(sounds_dir)[rand_index][-4:])
+	if os.listdir(sounds_dir)[rand_index][-4:] == '.wav':
+		ps.playsound(os.path.join(sounds_dir, os.listdir(sounds_dir)[rand_index]), False)
 
 def move_rect(event):
 	if event.char == 'f':
@@ -83,6 +94,7 @@ while x == True:
 	if counter > 3:
 		if (ball.xpos >= (1000-ball.size)):
 			counter = 0
+			play_sound()
 			if (move_angle < 90) or (move_angle < 270):
 				move_angle = move_angle + 90
 				ball.move_ball(move_angle, speed / 5)
@@ -90,7 +102,9 @@ while x == True:
 				move_angle = move_angle - 90
 				ball.move_ball(move_angle, speed / 5)
 		elif ball.xpos <= (ball.size):
+			play_sound()
 			counter = 0
+			play_sound()
 			if (move_angle > 180):
 				move_angle = move_angle + 90
 				ball.move_ball(move_angle, speed / 5)
@@ -99,7 +113,9 @@ while x == True:
 				ball.move_ball(move_angle, speed / 5)
 		
 		elif ball.ypos >= (1000-(ball.size+rect.height)):
+			play_sound()
 			counter = 0
+			play_sound()
 			if (ball.xpos >= rect.xpos and ball.xpos <= rect.xpos + 300):
 				if move_angle > 90:
 					i = random.randint(0, 3)
@@ -114,7 +130,9 @@ while x == True:
 				break
 
 		elif ball.ypos <= (ball.size):
+			play_sound()
 			counter = 0
+			play_sound()
 			if (move_angle > 270):
 				move_angle = move_angle - 270
 				ball.move_ball(move_angle, speed / 5)
