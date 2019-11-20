@@ -46,7 +46,7 @@ class Bar:
 		self.xpos = 100
 		self.ypos = 1000
 		self.height = 100
-		
+		  
 		self.id = self.master.create_rectangle(100, 1000, 100+self.width, 1000-self.height, fill='white')
 	
 	def move_bar(self, dist):
@@ -60,6 +60,7 @@ ball = Ball(root)
 rect = Bar(master=root)
 move_angle = 45
 speed = 8
+#sounds download from https://freesound.org/people/Jaz_the_MAN_2/packs/17749/?page=1#sound
 sounds_dir = '/Users/TheBestKid/Desktop/Programming/Graphics/Sounds'
 
 def play_sound():
